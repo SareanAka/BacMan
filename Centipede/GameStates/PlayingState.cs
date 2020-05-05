@@ -105,6 +105,13 @@ namespace Pacman.GameStates
                 punten.Children[0].Reset();
             }
 
+            if (GhostCollidesWithPacman(pacman))
+            {
+                Console.WriteLine("Hey");
+                GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+                Reset();
+            }
+
             base.Update(gameTime);
         }
         #endregion
@@ -116,6 +123,21 @@ namespace Pacman.GameStates
             foreach (Points points in punten.Children)
             {
                 if (points.CollidesWith(pacman))
+                {
+                    temp = true;
+                }
+            }
+            return temp;
+        }
+        #endregion
+        
+        #region PacmanDeath Bool
+        public bool GhostCollidesWithPacman(PacManGameObject pacman)
+        {
+            bool temp = false;
+            foreach (Ghosts ghosts in spookjes.Children)
+            {
+                if (ghosts.CollidesWith(pacman))
                 {
                     temp = true;
                 }

@@ -23,7 +23,7 @@ namespace Pacman
 
             GameStateManager.AddGameState("PlayingState", new PlayingState());
             GameStateManager.AddGameState("StartState", new StartState());
-            //GameStateManager.AddGameState("GameOverState", new GameOverState());
+            GameStateManager.AddGameState("GameOverState", new GameOverState());
 
             GameStateManager.SwitchTo("StartState");
 
