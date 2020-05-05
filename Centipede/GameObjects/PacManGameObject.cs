@@ -16,15 +16,27 @@ namespace Pacman
 {
     public class PacManGameObject : RotatingSpriteGameObject
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor for the Pacman
+        /// </summary>
+        /// <param name="position">gives the starting position for the pacman</param>
         public PacManGameObject(Vector2 position) : base("PacMan2")
         {
             this.position = position;
         }
+        #endregion
 
         public override void Update(GameTime gameTime)
         {
             
         }
+
+        #region Input handler
+        /// <summary>
+        /// Handles the keyboard inputs and responds apropriatly by moving the Pacman
+        /// </summary>
+        /// <param name="inputHelper"></param>
         public override void HandleInput(InputHelper inputHelper)
         {
             if (inputHelper.KeyPressed(Keys.W) && position.Y > 25)
@@ -49,5 +61,6 @@ namespace Pacman
             } 
             
         }
+        #endregion
     }
 }

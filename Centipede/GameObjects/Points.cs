@@ -18,25 +18,9 @@ namespace Pacman.GameObjects
     {
         public Points(Vector2 pos) : base("Points1")
         {
-
-            
-
             this.position = pos;
-
-        }
-
-       public bool CollidesWithPacman (PacManGameObject pacman)
-        {
-            bool temp = false;
-            
-                if (this.CollidesWith(pacman))
-                {
-                    temp = true;
-                }
-            
-            return temp;
-
 
         }
     }
 }
+

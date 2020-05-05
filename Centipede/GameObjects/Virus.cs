@@ -16,11 +16,23 @@ namespace Pacman.GameObjects
     class Virus : Ghosts
     {
         Random rnd = new Random();
+
+        #region Constructor
+        /// <summary>
+        /// The constructor of the third ghost
+        /// </summary>
+        /// <param name="pos">gives the position of the ghost</param>
         public Virus(Vector2 pos) : base(pos, "Ghost3")
         {
             this.position = pos;
         }
+        #endregion
 
+        #region Handle Input
+        /// <summary>
+        /// This method cotrolls the speed at wich the ghost walks and constrains them to the screen
+        /// </summary>
+        /// <param name="inputHelper">handles the input for the diffirent keys</param>
         public override void HandleInput(InputHelper inputHelper)
         {
             Vector2 oldPosition = position;
@@ -70,5 +82,6 @@ namespace Pacman.GameObjects
             }
 
         }
+        #endregion
     }
 }

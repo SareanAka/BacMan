@@ -13,6 +13,9 @@ using Pacman.GameStates;
 
 namespace Pacman.GameObjects
 {
+    /// <summary>
+    /// Parent class of all the ghosts
+    /// </summary>
     class Ghosts : SpriteGameObject
     {
         public int ghostWalk;
@@ -21,6 +24,12 @@ namespace Pacman.GameObjects
             
         }
 
+        #region Collision detections Ghosts
+        /// <summary>
+        /// handles the collision detection so they don't overlap with eachother
+        /// </summary>
+        /// <param name="self">Refers to the ghosts themself</param>
+        /// <returns></returns>
         public bool CollidesWithGhost(Ghosts self)
         {
             bool temp = false;
@@ -35,6 +44,7 @@ namespace Pacman.GameObjects
                 
 
         }
+        #endregion
 
         public override void HandleInput(InputHelper inputHelper)
         {

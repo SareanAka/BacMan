@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\Score.cs" />
     <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\StartState.cs" />
     <Compile Include="Pacman.cs" />

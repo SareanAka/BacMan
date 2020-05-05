@@ -19,16 +19,23 @@ namespace Pacman.GameStates
         public Random random = new Random();
 
         #region Public Variables
-       
+       /// <summary>
+       /// all starting positions for the Ghosts and Pacman
+       /// </summary>
         public Vector2 StartingPositionFraude = new Vector2 (175, 175);
         public Vector2 StartingPositionSmite = new Vector2(175, 825);
         public Vector2 StartingPositionSleep = new Vector2(525, 175);
         public Vector2 StartingPositionVirus = new Vector2(525, 825);
         public Vector2 StartingPositionPacman = new Vector2(325, 525);
+        /// <summary>
+        /// step intervals
+        /// </summary>
+        public int interval = 50;
+
+        //public int score;
         #endregion
 
         PacManGameObject pacman;
-
 
         #region Ghosts
         /// <summary>
@@ -58,6 +65,9 @@ namespace Pacman.GameStates
         #endregion
 
         #region Reset
+        /// <summary>
+        /// Executes everything that is in the first frame of playingstate
+        /// </summary>
         public override void Reset()
         {
             children.Clear();
@@ -75,8 +85,8 @@ namespace Pacman.GameStates
 
             pacman = new PacManGameObject(new Vector2(StartingPositionPacman.X, StartingPositionPacman.Y));
 
-            points = new Points(new Vector2(25 + 50 * random.Next(0, GameEnvironment.Screen.X / 50 - 1),
-                25 + 50 * random.Next(0, GameEnvironment.Screen.Y / 50 - 1)));
+            points = new Points(new Vector2(25 + interval * random.Next(0, GameEnvironment.Screen.X / interval - 1),
+                25 + interval * random.Next(0, GameEnvironment.Screen.Y / interval - 1)));
 
             this.Add(punten);
             punten.Add(points);
@@ -94,12 +104,16 @@ namespace Pacman.GameStates
         #endregion
 
         #region Update
+        /// <summary>
+        /// checks for all collisions between game objects and draws the score
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             if (CollidesWithPacman(pacman))
             {
-                points = new Points(new Vector2(25 + 50 * random.Next(0, GameEnvironment.Screen.X / 50 - 1), 25 + 50 * random.Next(0,
-                    GameEnvironment.Screen.Y / 50 - 1)));
+                points = new Points(new Vector2(25 + interval * random.Next(0, GameEnvironment.Screen.X / interval - 1), 25 + interval * random.Next(0,
+                    GameEnvironment.Screen.Y / interval - 1)));
                 punten.Children.Clear();
                 punten.Add(points);
                 punten.Children[0].Reset();
@@ -107,16 +121,22 @@ namespace Pacman.GameStates
 
             if (GhostCollidesWithPacman(pacman))
             {
-                Console.WriteLine("Hey");
                 GameEnvironment.GameStateManager.SwitchTo("GameOverState");
                 Reset();
             }
+
+            //score = TextGameObject;
 
             base.Update(gameTime);
         }
         #endregion
 
         #region PacmanCollision Bool
+        /// <summary>
+        /// Collision bool between the Points and the Pacman
+        /// </summary>
+        /// <param name="pacman"></param>
+        /// <returns></returns>
         public bool CollidesWithPacman(PacManGameObject pacman)
         {
             bool temp = false;
@@ -130,8 +150,14 @@ namespace Pacman.GameStates
             return temp;
         }
         #endregion
-        
+
+
         #region PacmanDeath Bool
+        /// <summary>
+        /// Collision bool between the Pacman and the Ghosts
+        /// </summary>
+        /// <param name="pacman"></param>
+        /// <returns></returns>
         public bool GhostCollidesWithPacman(PacManGameObject pacman)
         {
             bool temp = false;
