@@ -13,6 +13,11 @@ namespace Pacman.GameStates
     {
         public GameOverState()
         {
+            SpriteGameObject gameOverScreen = new SpriteGameObject("gameOverScreen");
+
+            this.Add(gameOverScreen);
+
+            gameOverScreen.Origin = new Vector2(0, 0);
         }
 
         public override void HandleInput(InputHelper inputHelper)
