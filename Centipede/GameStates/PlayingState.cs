@@ -32,10 +32,13 @@ namespace Pacman.GameStates
         /// </summary>
         public int interval = 50;
 
-        //public int score;
+        int score;
         #endregion
 
+        #region New Objects
         PacManGameObject pacman;
+        Score scoreText;
+        #endregion
 
         #region Ghosts
         /// <summary>
@@ -78,6 +81,8 @@ namespace Pacman.GameStates
 
             background.Origin = new Vector2(0, 0);
 
+            scoreText = new Score("File");
+
             fraude = new Fraude(new Vector2(StartingPositionFraude.X, StartingPositionFraude.Y));
             smite = new Smite(new Vector2(StartingPositionSmite.X, StartingPositionSmite.Y));
             virus = new Virus(new Vector2(StartingPositionSleep.X, StartingPositionSleep.Y));
@@ -87,6 +92,8 @@ namespace Pacman.GameStates
 
             points = new Points(new Vector2(25 + interval * random.Next(0, GameEnvironment.Screen.X / interval - 1),
                 25 + interval * random.Next(0, GameEnvironment.Screen.Y / interval - 1)));
+
+            this.Add(scoreText);
 
             this.Add(punten);
             punten.Add(points);
@@ -110,6 +117,8 @@ namespace Pacman.GameStates
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            scoreText.score = score;
+
             if (CollidesWithPacman(pacman))
             {
                 points = new Points(new Vector2(25 + interval * random.Next(0, GameEnvironment.Screen.X / interval - 1), 25 + interval * random.Next(0,
@@ -117,6 +126,7 @@ namespace Pacman.GameStates
                 punten.Children.Clear();
                 punten.Add(points);
                 punten.Children[0].Reset();
+                AddScore();
             }
 
             if (GhostCollidesWithPacman(pacman))
@@ -125,9 +135,17 @@ namespace Pacman.GameStates
                 Reset();
             }
 
-            //score = TextGameObject;
-
             base.Update(gameTime);
+        }
+        #endregion
+
+        #region Score
+        /// <summary>
+        /// Adds to the score
+        /// </summary>
+        public void AddScore()
+        {
+            score++;
         }
         #endregion
 
@@ -150,7 +168,6 @@ namespace Pacman.GameStates
             return temp;
         }
         #endregion
-
 
         #region PacmanDeath Bool
         /// <summary>
