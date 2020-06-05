@@ -19,9 +19,17 @@ namespace Pacman.GameObjects
     class Ghosts : SpriteGameObject
     {
         public int ghostWalk;
+        public int time;
         public Ghosts(Vector2 pos, string assetname) : base(assetname)
         {
             
+        }
+
+        public override void Update(GameTime gameTime) 
+        {
+            time++;
+
+            base.Update(gameTime);
         }
 
         #region Collision detections Ghosts

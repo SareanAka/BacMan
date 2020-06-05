@@ -33,11 +33,11 @@ namespace Pacman.GameObjects
         /// This method cotrolls the speed at wich the ghost walks and constrains them to the screen
         /// </summary>
         /// <param name="inputHelper">handles the input for the diffirent keys</param>
-        public override void HandleInput(InputHelper inputHelper)
+        public override void Update(GameTime gameTime)
         {
             Vector2 oldPosition = position;
             ghostWalk = rnd.Next(4);
-            if (inputHelper.KeyPressed(Keys.W) || inputHelper.KeyPressed(Keys.A) || inputHelper.KeyPressed(Keys.S) || inputHelper.KeyPressed(Keys.D))
+            if (time % 30 == 1)
             {
 
                 switch (ghostWalk)
