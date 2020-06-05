@@ -17,6 +17,8 @@ namespace Pacman.GameObjects
     class Score : TextGameObject
     {
         public int score;
+        bool scoreFinal;
+
         public Score(string assetname) : base("File")
         {
             position = new Vector2(100, 50);
@@ -26,7 +28,12 @@ namespace Pacman.GameObjects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            text = "Gems: " + score;
+            text = "Gems: " + score + "/30";
+
+            if (score == 30)
+            {
+                scoreFinal = true;
+            }
         }
     }
 }

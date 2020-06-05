@@ -38,6 +38,8 @@ namespace Pacman.GameStates
         #region New Objects
         PacManGameObject pacman;
         Score scoreText;
+
+        GameObjectList bullets;
         #endregion
 
         #region Ghosts
@@ -62,7 +64,8 @@ namespace Pacman.GameStates
         #region Constructor
         public PlayingState()
         {
-            
+            bullets = new GameObjectList();
+            this.Add(bullets);
             Reset();
         }
         #endregion
@@ -105,7 +108,17 @@ namespace Pacman.GameStates
             spookjes.Add(sleep);
 
             this.Add(pacman);
+            
+            foreach (Ghosts ghost in spookjes.Children)
+            {
+                if (ghost is Fraude)
+                {
 
+                    bullets.Add(new Bullet(ghost.Position));
+                    
+                }
+            }
+            
             base.Reset();
         }
         #endregion

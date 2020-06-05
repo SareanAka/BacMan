@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Pacman.GameObjects;
 
 namespace Pacman.GameStates
 {
     class GameOverState : GameObjectList
     {
+        public bool scoreFinal = ;
+        bool check;
         public GameOverState()
         {
+            if(scoreFinal == true)
+            {
+                check = true;
+            }
+
             SpriteGameObject gameOverScreen = new SpriteGameObject("gameOverScreen");
 
             this.Add(gameOverScreen);

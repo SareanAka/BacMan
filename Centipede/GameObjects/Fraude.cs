@@ -32,7 +32,7 @@ namespace Pacman.GameObjects
         /// <summary>
         /// This method cotrolls the speed at wich the ghost walks and constrains them to the screen
         /// </summary>
-        /// <param name="inputHelper">handles the input for the diffirent keys</param>
+        /// 
         public override void Update(GameTime gameTime)
         {
             Vector2 oldPosition = position;
@@ -81,6 +81,7 @@ namespace Pacman.GameObjects
                 }
 
             }
+            base.Update(gameTime);
 
         }
         #endregion

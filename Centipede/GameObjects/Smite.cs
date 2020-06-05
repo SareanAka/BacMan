@@ -81,6 +81,7 @@ namespace Pacman.GameObjects
                 }
 
             }
+            base.Update(gameTime);
 
         }
         #endregion
