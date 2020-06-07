@@ -19,7 +19,9 @@ namespace Pacman.GameObjects
         public Bullet(Vector2 pos, Vector2 direction) : base("Bullet")
         {
             position = pos;
-            velocity = direction;
+            direction.Normalize();
+            velocity = new Vector2(150, 150);
+            velocity *= direction;
         }
     }
 }
