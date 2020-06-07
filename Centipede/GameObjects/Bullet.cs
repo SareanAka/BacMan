@@ -16,9 +16,10 @@ namespace Pacman.GameObjects
 {
     public class Bullet : SpriteGameObject
     {
-        public Bullet(Vector2 pos) : base("Bullet")
+        public Bullet(Vector2 pos, Vector2 direction) : base("Bullet")
         {
-
+            position = pos;
+            velocity = direction;
         }
     }
 }

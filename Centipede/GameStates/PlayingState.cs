@@ -64,9 +64,10 @@ namespace Pacman.GameStates
         #region Constructor
         public PlayingState()
         {
+            Reset(); 
             bullets = new GameObjectList();
             this.Add(bullets);
-            Reset();
+            
         }
         #endregion
 
@@ -108,15 +109,7 @@ namespace Pacman.GameStates
 
             this.Add(pacman);
             
-            foreach (Ghosts ghost in spookjes.Children)
-            {
-                if (ghost is Fraude)
-                {
-
-                    bullets.Add(new Bullet(ghost.Position));
-                    
-                }
-            }
+            
             
             base.Reset();
         }
@@ -141,10 +134,54 @@ namespace Pacman.GameStates
                 AddScore();
             }
 
-            if (GhostCollidesWithPacman(pacman))
+            if (GhostCollidesWithPacman(pacman) || BulletCollidesWithPacman(pacman))
             {
                 GameEnvironment.GameStateManager.SwitchTo("GameOverState");
                 Reset();
+            }
+
+            foreach (Ghosts ghost in spookjes.Children)
+            {
+                if (ghost is Fraude)
+                {
+                    if (GameEnvironment.Random.Next(400) == 1)
+                    {
+                        bullets.Add(new Bullet(ghost.Position, pacman.Position - ghost.Position));
+                    }
+                }
+            }
+
+            foreach (Ghosts ghost in spookjes.Children)
+            {
+                if (ghost is Sleep)
+                {
+                    if (GameEnvironment.Random.Next(400) == 1)
+                    {
+                        bullets.Add(new Bullet(ghost.Position, pacman.Position - ghost.Position));
+                    }
+                }
+            }
+
+            foreach (Ghosts ghost in spookjes.Children)
+            {
+                if (ghost is Virus)
+                {
+                    if (GameEnvironment.Random.Next(400) == 1)
+                    {
+                        bullets.Add(new Bullet(ghost.Position, pacman.Position - ghost.Position));
+                    }
+                }
+            }
+
+            foreach (Ghosts ghost in spookjes.Children)
+            {
+                if (ghost is Smite)
+                {
+                    if (GameEnvironment.Random.Next(400) == 1)
+                    {
+                        bullets.Add(new Bullet(ghost.Position, pacman.Position - ghost.Position));
+                    }
+                }
             }
 
             base.Update(gameTime);
@@ -198,6 +235,24 @@ namespace Pacman.GameStates
                 }
             }
             return temp;
+        }
+        /// <summary>
+        /// Collision bool between the Pacman and the bullets
+        /// </summary>
+        /// <param name="pacman"></param>
+        /// <returns></returns>
+        public bool BulletCollidesWithPacman(PacManGameObject pacman)
+        {
+
+            bool temp2 = false;
+            foreach (Bullet bullet in bullets.Children)
+            {
+                if (bullet.CollidesWith(pacman))
+                {
+                    temp2 = true;
+                }
+            }
+            return temp2;
         }
         #endregion
     }

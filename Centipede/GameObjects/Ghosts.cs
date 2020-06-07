@@ -30,6 +30,7 @@ namespace Pacman.GameObjects
             time++;
 
 
+
             base.Update(gameTime);
         }
 
