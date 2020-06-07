@@ -10,16 +10,16 @@ using Pacman.GameObjects;
 
 namespace Pacman.GameStates
 {
-    class GameOverState : GameObjectList
+    class WinGameState : GameObjectList
     {
-        public GameOverState()
-        { 
+        public WinGameState()
+        {
 
-            SpriteGameObject gameOverScreen = new SpriteGameObject("gameOverScreen");
+            SpriteGameObject winScreen = new SpriteGameObject("WinScreen");
 
-            this.Add(gameOverScreen);
+            this.Add(winScreen);
 
-            gameOverScreen.Origin = new Vector2(0, 0);
+            winScreen.Origin = new Vector2(0, 0);
         }
 
         public override void HandleInput(InputHelper inputHelper)

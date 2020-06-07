@@ -76,7 +76,6 @@ namespace Pacman.GameStates
         /// </summary>
         public override void Reset()
         {
-            children.Clear();
 
             SpriteGameObject background = new SpriteGameObject("Background");
 

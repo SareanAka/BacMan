@@ -45,6 +45,7 @@
     <Compile Include="GameObjects\Score.cs" />
     <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\StartState.cs" />
+    <Compile Include="GameStates\WinGameState.cs" />
     <Compile Include="Pacman.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />

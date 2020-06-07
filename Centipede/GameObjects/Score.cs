@@ -17,7 +17,7 @@ namespace Pacman.GameObjects
     class Score : TextGameObject
     {
         public int score;
-        bool scoreFinal;
+        public bool scoreFinal;
 
         public Score(string assetname) : base("File")
         {
@@ -32,6 +32,7 @@ namespace Pacman.GameObjects
 
             if (score == 30)
             {
+                GameEnvironment.GameStateManager.SwitchTo("WinGameState");
                 scoreFinal = true;
             }
         }
